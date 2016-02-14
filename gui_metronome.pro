@@ -25,3 +25,5 @@ unix|win32: LIBS += -L$$PWD/portaudio-bin/ -lportaudio_x86
 
 INCLUDEPATH += $$PWD/portaudio-bin
 DEPENDPATH += $$PWD/portaudio-bin
+
+CONFIG += c++11

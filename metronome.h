@@ -13,8 +13,7 @@ public:
     {
         int frequencyTick;
     };
-    std::vector<Beat> bar;
-    int barCount = 1;
+
 
     void setBar(std::vector<Beat> bar);
     void setBpm(int);
@@ -36,6 +35,8 @@ private:
         PaStreamCallbackFlags           statusFlags,
         void*                           userData);
 
+    std::vector<Beat> bar;
+    int barCount = 1;
     int bpm;
     unsigned int counter = 0;
     int beatIndex = 0;
