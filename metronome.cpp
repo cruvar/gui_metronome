@@ -10,6 +10,7 @@ Metronome::Metronome()
 {
     pa_init();
     open(Pa_GetDefaultOutputDevice());
+    setBar({ {1000}, {500}, {500}, {500} });
 }
 
 void Metronome::setBar(std::vector<Beat> bar)

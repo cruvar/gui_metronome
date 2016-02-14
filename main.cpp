@@ -1,11 +1,15 @@
 #include "mainwindow.h"
+#include <portaudio.h>
+#include "metronome.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    Metronome metronome;
+
+    MainWindow *window = new MainWindow(&metronome);
+    window->show();
 
     return a.exec();
 }
