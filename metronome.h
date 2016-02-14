@@ -41,7 +41,7 @@ private:
     std::vector<Beat> bar;
     int barCount = 1;
     int barLimit;
-    int bpm;
+    int bpm = 120;
     int addBpm;
 
     bool playing = false;

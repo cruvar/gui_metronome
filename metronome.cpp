@@ -76,6 +76,7 @@ bool Metronome::start()
     if (stream == 0)
         return false;
 
+    playing = true;
     PaError err = Pa_StartStream(stream);
     return (err == paNoError);
 }
@@ -106,6 +107,7 @@ bool Metronome::stop()
     if (stream == 0)
         return false;
 
+    playing = false;
     PaError err = Pa_StopStream(stream);
 
     return (err == paNoError);
