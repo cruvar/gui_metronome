@@ -22,6 +22,9 @@ public:
     bool start();
     bool close();
     bool stop();
+    bool isPlaying();
+    void setPlaying(bool);
+    void speedTr();
     void HandleError(PaError &err);
     ~Metronome(void);
 
@@ -37,9 +40,14 @@ private:
 
     std::vector<Beat> bar;
     int barCount = 1;
+    int barLimit;
     int bpm;
+    int addBpm;
+
+    bool playing = false;
     unsigned int counter = 0;
     int beatIndex = 0;
+
 
 
     PaStream *stream;

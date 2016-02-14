@@ -6,9 +6,9 @@
 MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metronome), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->bpmSB->setValue(metronome->setBpm());
 
     connect(ui->playButton, SIGNAL(clicked(bool)), this, SLOT(StartClicked()));
+    //connect(ui->playButton, SIGNAL(clicked(bool)), this, SLOT(StopClicked()));
     connect(ui->bpmSB, SIGNAL(valueChanged(int)), this, SLOT(bpmChanged(int)));
 
 
@@ -17,22 +17,30 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 
 void MainWindow::StartClicked()
 {
-    metronome->start();
+    if (!metronome->isPlaying())
+    {
+        metronome->start();
+        metronome->setPlaying(true);
+    }
+    else
+    {
+        metronome->stop();
+        metronome->setPlaying(false);
+
+    }
+
 }
 
 void MainWindow::StopClicked()
 {
+    if(metronome->isPlaying())
+    {
+        metronome->stop();
+        metronome->setPlaying(false);
 
-    metronome->stop();
+    }
 }
 
-void MainWindow::CloseClicked()
-{
-    metronome->close();
-    Pa_Terminate();
-    this->close();
-
-}
 
 void MainWindow::bpmChanged(int bpm)
 {

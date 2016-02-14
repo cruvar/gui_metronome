@@ -24,7 +24,7 @@ private:
 private slots:
     void StartClicked();
     void StopClicked();
-    void CloseClicked();
+
     void bpmChanged(int);
 
 

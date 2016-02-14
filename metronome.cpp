@@ -17,9 +17,24 @@ Metronome::Metronome()
 void Metronome::setBar(std::vector<Beat> bar)
 {
     this->bar = bar;
-
 }
 
+
+void Metronome::speedTr()
+{
+    if(barCount > barLimit)
+        bpm = bpm +addBpm;
+}
+
+bool Metronome::isPlaying()
+{
+    return playing;
+}
+
+void Metronome::setPlaying(bool b)
+{
+    playing = b;
+}
 
 void Metronome::setBpm(int b)
 {
@@ -159,6 +174,8 @@ int Metronome::paCallback	(const		void*						inputBuffer,
         return 0;
     }
 
-    Metronome::~Metronome(void)
+Metronome::~Metronome(void)
     {
+       close();
+       Pa_Terminate();
     }
