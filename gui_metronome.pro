@@ -14,10 +14,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    metronome.cpp
+    pa_metronome.cpp
 
 HEADERS  += mainwindow.h \
-    metronome.h
+    pa_metronome.h
 
 FORMS    += mainwindow.ui
 

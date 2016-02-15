@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <portaudio.h>
-#include "metronome.h"
+#include "pa_metronome.h"
 #include "ui_mainwindow.h"
 
 MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metronome), ui(new Ui::MainWindow)
@@ -12,7 +12,6 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)), this, SLOT(enableSpeedTraining()));
     connect(ui->add_bpmSB, SIGNAL(valueChanged(int)), this, SLOT(addBpmChanged(int)));
     connect(ui->bars_per_stepSB, SIGNAL(valueChanged(int)), this, SLOT(barLimitChanged(int)));
-
 
 
 }
@@ -38,15 +37,22 @@ void MainWindow::addBpmChanged(int add_bpm)
 }
 
 
-void MainWindow::barLimitChanged(int bpm_lim)
+void MainWindow::barLimitChanged(int bar_lim)
 {
-    metronome->barLimit = bpm_lim;
+    metronome->setBarLimit(bar_lim);
 }
 
 void MainWindow::enableSpeedTraining()
 {
-     metronome->speedTr();
+    if(ui->en_sp_trRB->isChecked())
+    {
+        if(metronome->getBarCount() > metronome->getBarLimit())
+            metronome->speedTr();
+    }
+    else
+        metronome->setBpm(ui->bpmSB->value());
 }
+
 
 MainWindow::~MainWindow()
 {

@@ -1,4 +1,4 @@
-#include "metronome.h"
+#include "pa_metronome.h"
 #include <iostream>
 #include <portaudio.h>
 #include <math.h>
@@ -19,11 +19,29 @@ void Metronome::setBar(std::vector<Beat> bar)
     this->bar = bar;
 }
 
+void Metronome::setBarLimit(int bar_lim)
+{
+    barLimit = bar_lim;
+}
+
+int Metronome::getBarLimit()
+{
+    return barLimit;
+}
+
+int Metronome::getBarCount()
+{
+    return barCount;
+}
+
+int Metronome::getBeatCount()
+{
+    return beatIndex;
+}
 
 void Metronome::speedTr()
 {
-    if(barCount > barLimit)
-        bpm = bpm +addBpm;
+    bpm = bpm +addBpm;
 }
 
 bool Metronome::isPlaying()
@@ -40,6 +58,9 @@ int Metronome::getBpm()
 {
     return bpm;
 }
+
+
+
 
 bool Metronome::open(PaDeviceIndex index)
 {

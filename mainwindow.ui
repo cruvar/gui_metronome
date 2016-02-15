@@ -6,17 +6,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>431</width>
-    <height>230</height>
+    <width>566</width>
+    <height>231</height>
    </rect>
   </property>
   <property name="minimumSize">
-   <size>
-    <width>431</width>
-    <height>230</height>
-   </size>
-  </property>
-  <property name="maximumSize">
    <size>
     <width>431</width>
     <height>230</height>
@@ -153,6 +147,9 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="value">
+           <number>1</number>
+          </property>
          </widget>
         </item>
         <item>
@@ -186,6 +183,9 @@
          <widget class="QSpinBox" name="bars_per_stepSB">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="value">
+           <number>4</number>
           </property>
          </widget>
         </item>
@@ -289,6 +289,93 @@
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>100</y>
+      <width>131</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Output</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>BPM:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Bars:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Beats:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

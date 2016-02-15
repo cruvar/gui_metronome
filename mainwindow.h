@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <portaudio.h>
-#include "metronome.h"
+#include "pa_metronome.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,9 +28,8 @@ private slots:
     void barLimitChanged(int);
     void enableSpeedTraining();
 
+
 signals:
-
-
 
 
 };

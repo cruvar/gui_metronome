@@ -14,12 +14,16 @@ public:
         int frequencyTick;
     };
 
-    int addBpm = 0;
-    int barLimit = 0;
+    int addBpm = 1;
+
 
     void setBar(std::vector<Beat> bar);
     void setBpm(int);
+    void setBarLimit(int);
     int getBpm();
+    int getBarLimit();
+    int getBarCount();
+    int getBeatCount();
     bool open(PaDeviceIndex);
     bool pa_init();
     bool start();
@@ -42,6 +46,7 @@ private:
 
     std::vector<Beat> bar;
     int barCount = 1;
+    int barLimit = 4;
 
     int bpm = 120;
 

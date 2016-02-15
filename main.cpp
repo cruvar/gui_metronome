@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <portaudio.h>
-#include "metronome.h"
+#include "pa_metronome.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
