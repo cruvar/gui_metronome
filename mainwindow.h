@@ -23,11 +23,16 @@ private:
 
 private slots:
     void StartClicked();
-    void StopClicked();
-
     void bpmChanged(int);
+    void addBpmChanged(int);
+    void barLimitChanged(int);
+    void enableSpeedTraining();
+
+signals:
 
 
-  };
+
+
+};
 
 #endif // MAINWINDOW_H

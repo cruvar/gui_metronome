@@ -149,10 +149,17 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QSpinBox" name="add_bpmSB"/>
+         <widget class="QSpinBox" name="add_bpmSB">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>BPM add</string>
           </property>
@@ -176,10 +183,17 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QSpinBox" name="bars_per_stepSB"/>
+         <widget class="QSpinBox" name="bars_per_stepSB">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Bars per step</string>
           </property>
@@ -280,5 +294,70 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>en_sp_trRB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>add_bpmSB</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>54</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>en_sp_trRB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_2</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>123</x>
+     <y>142</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>106</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>en_sp_trRB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>bars_per_stepSB</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>100</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>61</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>en_sp_trRB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>172</x>
+     <y>144</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>130</x>
+     <y>195</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

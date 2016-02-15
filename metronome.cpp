@@ -31,14 +31,14 @@ bool Metronome::isPlaying()
     return playing;
 }
 
-void Metronome::setPlaying(bool b)
-{
-    playing = b;
-}
-
 void Metronome::setBpm(int b)
 {
     bpm = b;
+}
+
+int Metronome::getBpm()
+{
+    return bpm;
 }
 
 bool Metronome::open(PaDeviceIndex index)
