@@ -67,14 +67,13 @@ int Metronome::getBeatIndex()   //gets the beatCount
 
 void Metronome::speedTr()
 {
-    while(bpm < 300)
-    {
+    //cicle
         if(barCount > barLimit)
         {
             barCount = 0;
             bpm = bpm +addBpm;
         }
-    }
+    
 }
 
 bool Metronome::isPlaying()     //asks the metronome on his condition

@@ -16,6 +16,8 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 
 }
 
+/*===================================================================================================*/
+
 void MainWindow::StartClicked()
 {
     if(!metronome->isPlaying())
@@ -46,13 +48,16 @@ void MainWindow::enableSpeedTraining()
 {
     if(ui->en_sp_trRB->isChecked())
     {
-        if(metronome->getBarCount() > metronome->getBarLimit())
-            metronome->speedTr();
+
+                metronome->speedTr();
+
     }
     else
         metronome->setBpm(ui->bpmSB->value());
 }
 
+
+/*==================================================================================================*/
 
 MainWindow::~MainWindow()
 {

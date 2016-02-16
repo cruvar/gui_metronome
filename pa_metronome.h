@@ -20,18 +20,23 @@ public:
     void setBar(std::vector<Beat> bar);
     void setBpm(int);
     void setBarLimit(int);
+    void setBarCount(int);
+    void setBeatIndex(int);
+    void speedTr();
+    void HandleError(PaError &err);
+
     int getBpm();
     int getBarLimit();
     int getBarCount();
-    int getBeatCount();
+    int getBeatIndex();
+
     bool open(PaDeviceIndex);
     bool pa_init();
     bool start();
     bool close();
     bool stop();
     bool isPlaying();
-    void speedTr();
-    void HandleError(PaError &err);
+
     ~Metronome(void);
 
 
@@ -46,7 +51,7 @@ private:
 
     std::vector<Beat> bar;
     int barCount = 1;
-    int barLimit = 4;
+    int barLimit = 1;
 
     int bpm = 120;
 
