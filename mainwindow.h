@@ -22,15 +22,14 @@ private:
     Metronome   *metronome;
 
 private slots:
-    void BpmOut();
-    void BarOut();
-    void BeatOut();
-    void StartClicked();
+    void bpmOut();
+    void barOut();
+    void beatOut();
+    void startClicked();
     void bpmChange(int);
     void addBpmChange(int);
     void barLimitChange(int);
     void enableSpeedTraining();
-
 
 
 signals:

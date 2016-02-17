@@ -68,14 +68,13 @@ int Metronome::getBeatCount()   //gets the beatCount
 
 void Metronome::speedTr()
 {
-    /*while(true)
-    {
-        if(barCount > barLimit)
+
+        if(barCount >= barLimit)
         {
             barCount = 0;
             bpm = bpm +addBpm;
         }
-    }*/
+
 }
 
 bool Metronome::isPlaying()     //asks the metronome on his condition
@@ -182,6 +181,7 @@ int Metronome::paCallback	(const		void*						inputBuffer,
         double tick = framesInMs * 100;                     //длительность одного удара в кадрах
         double delayMs = (1000 * 60) / metronome->bpm;      //интервал в мс
         double interval = (framesInMs * delayMs);           //интервал между ударами в кадрах.
+        emit metronome->barIsPlayed(metronome->barCount);
 
         for (unsigned int i = 0; i < framesPerBuffer; i++)
         {
@@ -203,13 +203,19 @@ int Metronome::paCallback	(const		void*						inputBuffer,
                 }
                 else
                 {
+                    emit metronome->bpmIsChanged(metronome->bpm);
+
+                    emit metronome->beatIsChanged(metronome->beatCount);
                     metronome->counter = 0;
                     metronome->beatCount = (metronome->beatCount + 1) % metronome->bar.size();
+
                     if(metronome->beatCount == 0)
                     {
                         metronome->barCount = metronome->barCount + 1;
 
+
                     }
+
                 }
         }
 

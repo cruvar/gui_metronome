@@ -17,8 +17,7 @@ public:
         int frequencyTick;
     };
 
-    int addBpm = 1;
-
+    int addBpm = 0;
 
     void setBar(std::vector<Beat> bar);
     void setBpm(int);
@@ -55,16 +54,17 @@ private:
     std::vector<Beat> bar;
     int barCount = 0;
     int barLimit = 0;
-
     int bpm = 120;
-
     bool playing = false;
     unsigned int counter = 0;
     int beatCount = 0;
 
-
-
     PaStream *stream;
+
+signals:
+    void barIsPlayed(int);
+    void bpmIsChanged(int);
+    void beatIsChanged(int);
 };
 
 #endif // METRONOME_H

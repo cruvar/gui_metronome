@@ -7,36 +7,38 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 {
     ui->setupUi(this);
 
-    connect(ui->playButton, SIGNAL(clicked(bool)), this, SLOT(StartClicked()));
+    connect(ui->playButton, SIGNAL(clicked(bool)), this, SLOT(startClicked()));
     connect(ui->bpmSB, SIGNAL(valueChanged(int)), this, SLOT(bpmChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)), this, SLOT(enableSpeedTraining()));
     connect(ui->add_bpmSB, SIGNAL(valueChanged(int)), this, SLOT(addBpmChange(int)));
     connect(ui->bars_per_stepSB, SIGNAL(valueChanged(int)), this, SLOT(barLimitChange(int)));
-
-
+    connect(metronome, SIGNAL(barIsPlayed(int)), this, SLOT(enableSpeedTraining()));
+    connect(metronome, SIGNAL(bpmIsChanged(int)), this, SLOT(bpmOut()));
+    connect(metronome, SIGNAL(barIsPlayed(int)), this, SLOT(barOut()));
+    connect(metronome, SIGNAL(beatIsChanged(int)), this, SLOT(beatOut()));
 
 
 }
 
 /*===================================================================================================*/
 
-void MainWindow::BpmOut()
+void MainWindow::bpmOut()
 {
     ui->bpmOut->setText(QString::number(metronome->getBpm()));
 }
 
-void MainWindow::BarOut()
+void MainWindow::barOut()
 {
     ui->barOut->setText(QString::number(metronome->getBarCount()));
 }
 
-void MainWindow::BeatOut()
+void MainWindow::beatOut()
 {
     ui->beatOut->setText(QString::number(metronome->getBeatCount()));
 }
 
 
-void MainWindow::StartClicked()
+void MainWindow::startClicked()
 {
     if(!metronome->isPlaying())
         metronome->start();
