@@ -1,3 +1,4 @@
+#include <QObject>
 #include "pa_metronome.h"
 #include <iostream>
 #include <portaudio.h>
@@ -6,7 +7,7 @@
 
 #define SAMPLE_RATE (44100)
 
-Metronome::Metronome()
+Metronome::Metronome(QObject *parent) : QObject(parent)
 {
     pa_init();
     open(Pa_GetDefaultOutputDevice());
@@ -36,9 +37,9 @@ int Metronome::getBpm()
     return bpm;
 }
 
-void Metronome::setBeatIndex(int bInd)
+void Metronome::setBeatCount(int bC)
 {
-    beatIndex = bInd;
+    beatCount = bC;
 }
 
 void Metronome::setBarCount(int bCount)
@@ -58,23 +59,23 @@ int Metronome::getBarCount()    //gets the barCount
     return barCount;
 }
 
-int Metronome::getBeatIndex()   //gets the beatCount
+int Metronome::getBeatCount()   //gets the beatCount
 {
-    return beatIndex;
+    return beatCount;
 }
 
 
 
 void Metronome::speedTr()
 {
-    while(bpm < 300)
+    /*while(true)
     {
         if(barCount > barLimit)
         {
             barCount = 0;
             bpm = bpm +addBpm;
         }
-    }
+    }*/
 }
 
 bool Metronome::isPlaying()     //asks the metronome on his condition
@@ -186,7 +187,7 @@ int Metronome::paCallback	(const		void*						inputBuffer,
         {
             if (metronome->counter < tick)
             {
-                int freq = metronome->bar[metronome->beatIndex].frequencyTick;
+                int freq = metronome->bar[metronome->beatCount].frequencyTick;
                 sampleVal = sinf(2.0 * pi * freq * metronome->counter / SAMPLE_RATE);
 
                 *out++ = sampleVal;
@@ -203,8 +204,8 @@ int Metronome::paCallback	(const		void*						inputBuffer,
                 else
                 {
                     metronome->counter = 0;
-                    metronome->beatIndex = (metronome->beatIndex + 1) % metronome->bar.size();
-                    if(metronome->beatIndex == 0)
+                    metronome->beatCount = (metronome->beatCount + 1) % metronome->bar.size();
+                    if(metronome->beatCount == 0)
                     {
                         metronome->barCount = metronome->barCount + 1;
 

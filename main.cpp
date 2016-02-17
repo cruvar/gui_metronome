@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include <portaudio.h>
 #include "pa_metronome.h"
 #include <QApplication>
 

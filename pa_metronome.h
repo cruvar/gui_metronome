@@ -1,13 +1,16 @@
-#include <portaudio.h>
-#include <vector>
-
 #ifndef _METRONOME_H_
 #define _METRONOME_H_
 
-class Metronome
+#include <QObject>
+#include <portaudio.h>
+#include <vector>
+
+class Metronome : public QObject
 {
+    Q_OBJECT
+
 public:
-    Metronome();
+    Metronome(QObject *parent=0);
 
     struct Beat
     {
@@ -21,14 +24,14 @@ public:
     void setBpm(int);
     void setBarLimit(int);
     void setBarCount(int);
-    void setBeatIndex(int);
+    void setBeatCount(int);
     void speedTr();
     void HandleError(PaError &err);
 
     int getBpm();
     int getBarLimit();
     int getBarCount();
-    int getBeatIndex();
+    int getBeatCount();
 
     bool open(PaDeviceIndex);
     bool pa_init();
@@ -50,14 +53,14 @@ private:
         void*                           userData);
 
     std::vector<Beat> bar;
-    int barCount = 1;
-    int barLimit = 1;
+    int barCount = 0;
+    int barLimit = 0;
 
     int bpm = 120;
 
     bool playing = false;
     unsigned int counter = 0;
-    int beatIndex = 0;
+    int beatCount = 0;
 
 
 

@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <portaudio.h>
 #include "pa_metronome.h"
 
 namespace Ui {
@@ -15,6 +14,7 @@ class MainWindow : public QMainWindow
 
 public:
      MainWindow(Metronome *metronome, QWidget *parent=0);
+
     ~MainWindow();
 
 private:
@@ -22,15 +22,19 @@ private:
     Metronome   *metronome;
 
 private slots:
+    void BpmOut();
+    void BarOut();
+    void BeatOut();
     void StartClicked();
-    void bpmChanged(int);
-    void addBpmChanged(int);
-    void barLimitChanged(int);
+    void bpmChange(int);
+    void addBpmChange(int);
+    void barLimitChange(int);
     void enableSpeedTraining();
 
 
 
 signals:
+
 
 
 };

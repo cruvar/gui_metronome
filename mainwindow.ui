@@ -148,7 +148,7 @@
            <bool>false</bool>
           </property>
           <property name="value">
-           <number>1</number>
+           <number>0</number>
           </property>
          </widget>
         </item>
@@ -185,7 +185,7 @@
            <bool>false</bool>
           </property>
           <property name="value">
-           <number>1</number>
+           <number>0</number>
           </property>
          </widget>
         </item>
@@ -325,6 +325,13 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QLabel" name="bpmOut">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -349,6 +356,13 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QLabel" name="barOut">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -372,6 +386,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="beatOut">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
