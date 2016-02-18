@@ -7,32 +7,31 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 {
     ui->setupUi(this);
 
-    connect(ui->playButton, SIGNAL(clicked(bool)), this, SLOT(startClicked()));
-    connect(ui->bpmSB, SIGNAL(valueChanged(int)), this, SLOT(bpmChange(int)));
-    connect(ui->en_sp_trRB, SIGNAL(toggled(bool)), this, SLOT(enableSpeedTraining()));
-    connect(ui->add_bpmSB, SIGNAL(valueChanged(int)), this, SLOT(addBpmChange(int)));
-    connect(ui->bars_per_stepSB, SIGNAL(valueChanged(int)), this, SLOT(barLimitChange(int)));
-    connect(metronome, SIGNAL(barIsPlayed(int)), this, SLOT(enableSpeedTraining()));
-    connect(metronome, SIGNAL(bpmIsChanged(int)), this, SLOT(bpmOut()));
-    connect(metronome, SIGNAL(barIsPlayed(int)), this, SLOT(barOut()));
-    connect(metronome, SIGNAL(beatIsChanged(int)), this, SLOT(beatOut()));
-
+    connect(ui->playButton, SIGNAL(clicked(bool)),      this, SLOT(startClicked()));
+    connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
+    connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
+    connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this, SLOT(addBpmChange(int)));
+    connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this, SLOT(barLimitChange(int)));
+    connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(enableSpeedTraining()));
+    connect(metronome,      SIGNAL(bpmChanged(int)),    this, SLOT(bpmPrint()));
+    connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(barPrint()));
+    connect(metronome,      SIGNAL(beatChanged(int)),   this, SLOT(beatPrint()));
 
 }
 
 /*===================================================================================================*/
 
-void MainWindow::bpmOut()
+void MainWindow::bpmPrint()
 {
     ui->bpmOut->setText(QString::number(metronome->getBpm()));
 }
 
-void MainWindow::barOut()
+void MainWindow::barPrint()
 {
     ui->barOut->setText(QString::number(metronome->getBarCount()));
 }
 
-void MainWindow::beatOut()
+void MainWindow::beatPrint()
 {
     ui->beatOut->setText(QString::number(metronome->getBeatCount()));
 }
@@ -55,7 +54,7 @@ void MainWindow::bpmChange(int bpm)
 
 void MainWindow::addBpmChange(int add_bpm)
 {
-    metronome->addBpm = add_bpm;
+    metronome->setAddBpm(add_bpm);
 }
 
 
@@ -68,15 +67,11 @@ void MainWindow::enableSpeedTraining()
 {
     if(ui->en_sp_trRB->isChecked())
     {
-
         metronome->speedTr();
-
     }
     else
     {
         metronome->setBpm(ui->bpmSB->value());
-        ui->bars_per_stepSB->setValue(0);
-        ui->add_bpmSB->setValue(0);
     }
 }
 

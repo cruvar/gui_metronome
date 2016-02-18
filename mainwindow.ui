@@ -7,13 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>431</width>
-    <height>297</height>
+    <height>272</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>431</width>
-    <height>230</height>
+    <height>272</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>431</width>
+    <height>272</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -62,7 +68,7 @@
         <item>
          <widget class="QLabel" name="bpmOut">
           <property name="text">
-           <string> </string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -93,7 +99,7 @@
         <item>
          <widget class="QLabel" name="barOut">
           <property name="text">
-           <string> </string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -124,7 +130,7 @@
         <item>
          <widget class="QLabel" name="beatOut">
           <property name="text">
-           <string> </string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -191,7 +197,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
        <widget class="QPushButton" name="playButton">
@@ -236,13 +242,13 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>150</y>
       <width>411</width>
-      <height>131</height>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -308,7 +314,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QSpinBox" name="bars_per_stepSB">
+            <widget class="QSpinBox" name="barsLimitSB">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -455,7 +461,7 @@
   <connection>
    <sender>en_sp_trRB</sender>
    <signal>toggled(bool)</signal>
-   <receiver>bars_per_stepSB</receiver>
+   <receiver>barsLimitSB</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

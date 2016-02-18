@@ -22,9 +22,9 @@ private:
     Metronome   *metronome;
 
 private slots:
-    void bpmOut();
-    void barOut();
-    void beatOut();
+    void bpmPrint();
+    void barPrint();
+    void beatPrint();
     void startClicked();
     void bpmChange(int);
     void addBpmChange(int);

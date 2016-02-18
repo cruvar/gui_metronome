@@ -22,6 +22,11 @@ void Metronome::setBpm(int b)
     bpm = b;
 }
 
+void Metronome::setAddBpm(int add)
+{
+     addBpm = add;
+}
+
 void Metronome::setBar(std::vector<Beat> bar)   //set bar size and peat pattern
 {
     this->bar = bar;
@@ -181,7 +186,7 @@ int Metronome::paCallback	(const		void*						inputBuffer,
         double tick = framesInMs * 100;                     //длительность одного удара в кадрах
         double delayMs = (1000 * 60) / metronome->bpm;      //интервал в мс
         double interval = (framesInMs * delayMs);           //интервал между ударами в кадрах.
-        emit metronome->barIsPlayed(metronome->barCount);
+
 
         for (unsigned int i = 0; i < framesPerBuffer; i++)
         {
@@ -203,16 +208,16 @@ int Metronome::paCallback	(const		void*						inputBuffer,
                 }
                 else
                 {
-                    emit metronome->bpmIsChanged(metronome->bpm);
 
-                    emit metronome->beatIsChanged(metronome->beatCount);
                     metronome->counter = 0;
                     metronome->beatCount = (metronome->beatCount + 1) % metronome->bar.size();
+                    emit metronome->beatChanged(metronome->beatCount);
+                    emit metronome->bpmChanged(metronome->bpm);
+                    emit metronome->barPlayed(metronome->barCount);
 
                     if(metronome->beatCount == 0)
                     {
                         metronome->barCount = metronome->barCount + 1;
-
 
                     }
 
