@@ -2,6 +2,7 @@
 ## Eclipse
 #################
 
+*.autosave
 *.pydevproject
 *.user
 .project
