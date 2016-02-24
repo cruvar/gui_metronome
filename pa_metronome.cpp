@@ -27,12 +27,12 @@ void Metronome::setAddBpm(int add)
      addBpm = add;
 }
 
-void Metronome::setBar(std::vector<Beat> bar)   //set bar size and peat pattern
+void Metronome::setBar(std::vector<Beat> bar)
 {
     this->bar = bar;
 }
 
-void Metronome::setBarLimit(int bar_lim)    //sets the number of bars, after which there is a addBpm
+void Metronome::setBarLimit(int bar_lim)
 {
     barLimit = bar_lim;
 }
@@ -42,31 +42,31 @@ int Metronome::getBpm()
     return bpm;
 }
 
-void Metronome::setBeatCount(int bC)
+void Metronome::setBeatIndex(int b)
 {
-    beatCount = bC;
+    beatIndex = b;
 }
 
-void Metronome::setBarCount(int bCount)
+void Metronome::setBarIndex(int b)
 {
-    barCount = bCount;
+    barIndex = b;
 }
 
 
 
-int Metronome::getBarLimit()    //gets the number of bars, after which there is a addBpm
+int Metronome::getBarLimit()
 {
     return barLimit;
 }
 
-int Metronome::getBarCount()    //gets the barCount
+int Metronome::getBarIndex()
 {
-    return barCount;
+    return barIndex;
 }
 
-int Metronome::getBeatCount()   //gets the beatCount
+int Metronome::getBeatIndex()
 {
-    return beatCount;
+    return beatIndex;
 }
 
 
@@ -74,15 +74,15 @@ int Metronome::getBeatCount()   //gets the beatCount
 void Metronome::speedTr()
 {
 
-        if(barCount >= barLimit)
+        if(barIndex >= barLimit)
         {
-            barCount = 0;
+            barIndex = 0;
             bpm = bpm +addBpm;
         }
 
 }
 
-bool Metronome::isPlaying()     //asks the metronome on his condition
+bool Metronome::isPlaying()
 {
     return playing;
 }
@@ -192,7 +192,7 @@ int Metronome::paCallback	(const		void*						inputBuffer,
         {
             if (metronome->counter < tick)
             {
-                int freq = metronome->bar[metronome->beatCount].frequencyTick;
+                int freq = metronome->bar[metronome->beatIndex].frequencyTick;
                 sampleVal = sinf(2.0 * pi * freq * metronome->counter / SAMPLE_RATE);
 
                 *out++ = sampleVal;
@@ -210,15 +210,15 @@ int Metronome::paCallback	(const		void*						inputBuffer,
                 {
 
                     metronome->counter = 0;
-                    metronome->beatCount = (metronome->beatCount + 1) % metronome->bar.size();
-                    emit metronome->beatChanged(metronome->beatCount);
-                    emit metronome->bpmChanged(metronome->bpm);
-                    emit metronome->barPlayed(metronome->barCount);
+                    emit metronome->beatChanged(metronome->beatIndex);
+                    metronome->beatIndex = (metronome->beatIndex + 1) % metronome->bar.size();
 
-                    if(metronome->beatCount == 0)
+
+                    if(metronome->beatIndex == 1)
                     {
-                        metronome->barCount = metronome->barCount + 1;
-
+                        metronome->barIndex = metronome->barIndex + 1;
+                        emit metronome->barPlayed(metronome->barIndex);
+                        emit metronome->bpmChanged(metronome->bpm);
                     }
 
                 }

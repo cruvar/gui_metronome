@@ -28,12 +28,12 @@ void MainWindow::bpmPrint()
 
 void MainWindow::barPrint()
 {
-    ui->barOut->setText(QString::number(metronome->getBarCount()));
+    ui->barOut->setText(QString::number(metronome->getBarIndex()));
 }
 
 void MainWindow::beatPrint()
 {
-    ui->beatOut->setText(QString::number(metronome->getBeatCount()));
+    ui->beatOut->setText(QString::number(metronome->getBeatIndex()));
 }
 
 

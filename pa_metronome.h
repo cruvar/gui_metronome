@@ -17,21 +17,19 @@ public:
         int frequencyTick;
     };
 
-
-
     void setBar(std::vector<Beat> bar);
     void setBpm(int);
     void setAddBpm(int);
     void setBarLimit(int);
-    void setBarCount(int);
-    void setBeatCount(int);
+    void setBarIndex(int);
+    void setBeatIndex(int);
     void speedTr();
     void HandleError(PaError &err);
 
     int getBpm();
     int getBarLimit();
-    int getBarCount();
-    int getBeatCount();
+    int getBarIndex();
+    int getBeatIndex();
 
     bool open(PaDeviceIndex);
     bool pa_init();
@@ -42,10 +40,8 @@ public:
 
     ~Metronome(void);
 
-
-
 private:
-        static int paCallback(const void*  inputBuffer,
+    static int paCallback(const void*   inputBuffer,
         void*                           outputBuffer,
         unsigned long                   framesPerBuffer,
         const PaStreamCallbackTimeInfo* timeInfo,
@@ -53,15 +49,15 @@ private:
         void*                           userData);
 
     std::vector<Beat> bar;
+    PaStream *stream;
+
     int addBpm      = 0;
-    int barCount    = 0;
+    int barIndex    = 0;
     int barLimit    = 0;
     int bpm         = 120;
-    bool playing    = false;
     int counter     = 0;
-    int beatCount   = 0;
-
-    PaStream *stream;
+    int beatIndex   = 0;
+    bool playing    = false;
 
 signals:
     void barPlayed(int);
