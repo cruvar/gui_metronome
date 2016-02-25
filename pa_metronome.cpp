@@ -74,9 +74,9 @@ int Metronome::getBeatIndex()
 void Metronome::speedTr()
 {
 
-        if(barIndex >= barLimit)
+        if(barIndex > barLimit)
         {
-            barIndex = 0;
+            barIndex = 1;
             bpm = bpm +addBpm;
         }
 
@@ -123,6 +123,7 @@ bool Metronome::start()
     if (stream == 0)
         return false;
 
+    beatIndex = 0;
     playing = true;
     PaError err = Pa_StartStream(stream);
     return (err == paNoError);
@@ -148,6 +149,7 @@ bool Metronome::close()
 
 bool Metronome::stop()
 {
+
     if (stream == 0)
         return false;
 
@@ -210,8 +212,9 @@ int Metronome::paCallback	(const		void*						inputBuffer,
                 {
 
                     metronome->counter = 0;
-                    emit metronome->beatChanged(metronome->beatIndex);
+
                     metronome->beatIndex = (metronome->beatIndex + 1) % metronome->bar.size();
+                    emit metronome->beatChanged(metronome->beatIndex);
 
 
                     if(metronome->beatIndex == 1)

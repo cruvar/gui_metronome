@@ -33,7 +33,9 @@ private slots:
 
 
 signals:
-
+    void resetBpm(int);
+    void resetBar(int);
+    void resetBeat(int);
 
 
 };
