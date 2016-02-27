@@ -23,14 +23,16 @@ public:
     void setBarLimit(int);
     void setBarIndex(int);
     void setBeatIndex(int);
-    void speedTr();
-    void HandleError(PaError &err);
+    void setVolume(int);
 
+    float getVolume();
     int getBpm();
     int getBarLimit();
     int getBarIndex();
     int getBeatIndex();
 
+    void speedTr();
+    void HandleError(PaError &err);
     bool open(PaDeviceIndex);
     bool pa_init();
     bool start();
@@ -57,6 +59,7 @@ private:
     int bpm         = 120;
     int counter     = 0;
     int beatIndex   = 0;
+    float volume    = 0.75;
     bool playing    = false;
 
 signals:

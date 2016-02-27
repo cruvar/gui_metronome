@@ -188,6 +188,15 @@
         </item>
         <item>
          <widget class="QSlider" name="Volume">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>75</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -263,7 +272,7 @@
           <x>10</x>
           <y>20</y>
           <width>161</width>
-          <height>75</height>
+          <height>83</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -366,7 +375,7 @@
           <x>10</x>
           <y>20</y>
           <width>164</width>
-          <height>72</height>
+          <height>79</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
