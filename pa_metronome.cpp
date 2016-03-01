@@ -42,6 +42,11 @@ int Metronome::getBpm()
     return bpm;
 }
 
+void Metronome::setVolume(int vol)
+ {
+     volume = (float)vol / 100;
+ }
+
 void Metronome::setBeatIndex(int b)
 {
     beatIndex = b;
@@ -197,6 +202,7 @@ int Metronome::paCallback	(const		void*						inputBuffer,
             {
                 int freq = metronome->bar[metronome->beatIndex].frequencyTick;
                 sampleVal = sinf(2.0 * pi * freq * metronome->counter / SAMPLE_RATE);
+                sampleVal = sampleVal * metronome->volume;
 
                 *out++ = sampleVal;
                 *out++ = sampleVal;

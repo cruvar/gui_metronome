@@ -9,7 +9,7 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 
     connect(ui->playButton, SIGNAL(clicked(bool)),      this, SLOT(startClicked()));
     connect(this,           SIGNAL(resetBpm(int)),   ui->bpmSB, SLOT(setValue(int)));
-
+    connect(ui->Volume,     SIGNAL(valueChanged(int)),  this, SLOT(volumeChange(int)));
     connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
     connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this, SLOT(addBpmChange(int)));
@@ -51,6 +51,10 @@ void MainWindow::startClicked()
     }
 }
 
+void MainWindow::volumeChange(int vol)
+ {
+     metronome->setVolume(vol);
+ }
 
 void MainWindow::bpmChange(int bpm)
 {

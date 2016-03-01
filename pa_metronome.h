@@ -19,6 +19,7 @@ public:
 
     void setBar(std::vector<Beat> bar);
     void setBpm(int);
+    void setVolume(int);
     void setAddBpm(int);
     void setBarLimit(int);
     void setBarIndex(int);
@@ -55,6 +56,7 @@ private:
     int barIndex    = 0;
     int barLimit    = 0;
     int bpm         = 120;
+    float volume    = 0.75;
     int counter     = 0;
     int beatIndex   = 0;
     bool playing    = false;

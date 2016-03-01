@@ -30,6 +30,7 @@ private slots:
     void addBpmChange(int);
     void barLimitChange(int);
     void enableSpeedTraining();
+    void volumeChange(int);
 
 
 signals:
