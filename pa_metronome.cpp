@@ -52,11 +52,6 @@ void Metronome::setBarIndex(int b)
     barIndex = b;
 }
 
-void Metronome::setVolume(int vol)
-{
-    volume = (float)vol / 100;
-}
-
 
 
 int Metronome::getBarLimit()
@@ -202,7 +197,6 @@ int Metronome::paCallback	(const		void*						inputBuffer,
             {
                 int freq = metronome->bar[metronome->beatIndex].frequencyTick;
                 sampleVal = sinf(2.0 * pi * freq * metronome->counter / SAMPLE_RATE);
-                sampleVal = sampleVal * metronome->volume;
 
                 *out++ = sampleVal;
                 *out++ = sampleVal;

@@ -11,7 +11,6 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(this,           SIGNAL(resetBpm(int)),   ui->bpmSB, SLOT(setValue(int)));
 
     connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
-    connect(ui->Volume,     SIGNAL(valueChanged(int)),  this, SLOT(volumeChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
     connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this, SLOT(addBpmChange(int)));
     connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this, SLOT(barLimitChange(int)));
@@ -56,11 +55,6 @@ void MainWindow::startClicked()
 void MainWindow::bpmChange(int bpm)
 {
     metronome->setBpm(bpm);
-}
-
-void MainWindow::volumeChange(int vol)
-{
-    metronome->setVolume(vol);
 }
 
 
