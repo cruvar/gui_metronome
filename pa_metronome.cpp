@@ -129,6 +129,7 @@ bool Metronome::start()
         return false;
 
     beatIndex = 0;
+    barIndex = 0;
     counter = 0;
     playing = true;
     PaError err = Pa_StartStream(stream);

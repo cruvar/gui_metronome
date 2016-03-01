@@ -211,7 +211,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Play</string>
+         <string>Start/Stop</string>
         </property>
         <property name="icon">
          <iconset theme="play">
