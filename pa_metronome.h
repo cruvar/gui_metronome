@@ -24,6 +24,8 @@ public:
     void setBarLimit(int);
     void setBarIndex(int);
     void setBeatIndex(int);
+    void setBarSize(int);
+
     void speedTr();
     void HandleError(PaError &err);
 
@@ -60,6 +62,16 @@ private:
     int counter     = 0;
     int beatIndex   = 0;
     bool playing    = false;
+    int barSize     = 4;
+
+    int b1 = 1000;
+    int b2 = 500;
+    int b3 = 500;
+    int b4 = 500;
+    int b5 = 500;
+    int b6 = 500;
+    int b7 = 500;
+    int b8 = 500;
 
 signals:
     void barPlayed(int);

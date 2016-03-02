@@ -11,7 +11,7 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
 {
     pa_init();
     open(Pa_GetDefaultOutputDevice());
-    std::vector<Beat> bar = { { 1000 },{ 500 },{ 500 },{ 500 } };
+    std::vector<Beat> bar = { { b1 },{ b2 },{ b3 },{ b4 },{ b5 },{ b6 },{ b7 },{ b8 } };
     setBar(bar);
 }
 
@@ -57,6 +57,10 @@ void Metronome::setBarIndex(int b)
     barIndex = b;
 }
 
+void Metronome::setBarSize(int b)
+{
+    barSize = b;
+}
 
 
 int Metronome::getBarLimit()
@@ -221,7 +225,7 @@ int Metronome::paCallback	(const		void*						inputBuffer,
 
                     metronome->counter = 0;
 
-                    metronome->beatIndex = (metronome->beatIndex + 1) % metronome->bar.size();
+                    metronome->beatIndex = (metronome->beatIndex + 1) % metronome->barSize;
                     emit metronome->beatChanged(metronome->beatIndex);
 
 
