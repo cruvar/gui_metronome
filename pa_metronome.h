@@ -17,29 +17,29 @@ public:
         int frequencyTick;
     };
 
-    void setBar(std::vector<Beat> bar);
-    void setBpm(int);
-    void setVolume(int);
-    void setAddBpm(int);
-    void setBarLimit(int);
-    void setBarIndex(int);
-    void setBeatIndex(int);
-    void setBarSize(int);
+    void setBar(std::vector<Beat> bar) { this->bar = bar; }
+    void setBpm(int bpm)               { this->bpm = bpm; }
+    void setVolume(int volume)         { this->volume = (float)volume / 100; }
+    void setAddBpm(int addBpm)         { this->addBpm = addBpm; }
+    void setBarLimit(int barLimit)     { this->barLimit = barLimit; }
+    void setBarIndex(int barIndex)     { this->barIndex = barIndex; }
+    void setBeatIndex(int beatIndex)   { this->beatIndex = beatIndex; }
+    void setBarSize(int barSize)       { this->barSize = barSize; }
 
     void speedTr();
     void HandleError(PaError &err);
 
-    int getBpm();
-    int getBarLimit();
-    int getBarIndex();
-    int getBeatIndex();
+    int getBpm()                        { return bpm; }
+    int getBarLimit() { return barLimit; }
+    int getBarIndex() {  return barIndex; }
+    int getBeatIndex() { return beatIndex; }
 
     bool open(PaDeviceIndex);
     bool pa_init();
     bool start();
     bool close();
     bool stop();
-    bool isPlaying();
+    bool isPlaying() { return playing; }
 
     ~Metronome(void);
 
@@ -63,6 +63,8 @@ private:
     int beatIndex   = 0;
     bool playing    = false;
     int barSize     = 4;
+
+
 
     int b1 = 1000;
     int b2 = 500;

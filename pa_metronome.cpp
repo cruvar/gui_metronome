@@ -17,69 +17,6 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
 
 /*=================================================================================*/
 
-void Metronome::setBpm(int b)
-{
-    bpm = b;
-}
-
-void Metronome::setAddBpm(int add)
-{
-     addBpm = add;
-}
-
-void Metronome::setBar(std::vector<Beat> bar)
-{
-    this->bar = bar;
-}
-
-void Metronome::setBarLimit(int bar_lim)
-{
-    barLimit = bar_lim;
-}
-
-int Metronome::getBpm()
-{
-    return bpm;
-}
-
-void Metronome::setVolume(int vol)
- {
-     volume = (float)vol / 100;
- }
-
-void Metronome::setBeatIndex(int b)
-{
-    beatIndex = b;
-}
-
-void Metronome::setBarIndex(int b)
-{
-    barIndex = b;
-}
-
-void Metronome::setBarSize(int b)
-{
-    barSize = b;
-}
-
-
-int Metronome::getBarLimit()
-{
-    return barLimit;
-}
-
-int Metronome::getBarIndex()
-{
-    return barIndex;
-}
-
-int Metronome::getBeatIndex()
-{
-    return beatIndex;
-}
-
-
-
 void Metronome::speedTr()
 {
 
@@ -89,11 +26,6 @@ void Metronome::speedTr()
             bpm = bpm +addBpm;
         }
 
-}
-
-bool Metronome::isPlaying()
-{
-    return playing;
 }
 
 /*===============================================================================*/
@@ -180,14 +112,12 @@ void Metronome::HandleError(PaError &err)
     exit(err);
 }
 
-
-
-int Metronome::paCallback	(const		void*						inputBuffer,
-                                        void*                       outputBuffer,
-                            unsigned	long						framesPerBuffer,
-                            const		PaStreamCallbackTimeInfo*	timeInfo,
-                                        PaStreamCallbackFlags       statusFlags,
-                                        void*                       userData)
+int Metronome::paCallback(const void * inputBuffer,
+                          void * outputBuffer,
+                          unsigned long framesPerBuffer,
+                          const PaStreamCallbackTimeInfo* timeInfo,
+                          PaStreamCallbackFlags statusFlags,
+                          void * userData)
 
 {
         Metronome *metronome = (Metronome*)userData;
