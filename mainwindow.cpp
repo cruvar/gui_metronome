@@ -8,7 +8,7 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     ui->setupUi(this);
 
     connect(ui->playButton, SIGNAL(clicked(bool)),      this, SLOT(startClicked()));
-    connect(this,           SIGNAL(resetBpm(int)),   ui->bpmSB, SLOT(setValue(int)));
+    connect(this,           SIGNAL(resetBpm(int)), ui->bpmSB, SLOT(setValue(int)));
     connect(ui->Volume,     SIGNAL(valueChanged(int)),  this, SLOT(volumeChange(int)));
     connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
@@ -23,20 +23,13 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 
 /*===================================================================================================*/
 
-void MainWindow::bpmPrint()
-{
-    ui->bpmOut->setText(QString::number(metronome->getBpm()));
-}
+void MainWindow::bpmPrint()                 { ui->bpmOut->setText(QString::number(metronome->getBpm())); }
 
-void MainWindow::barPrint()
-{
-    ui->barOut->setText(QString::number(metronome->getBarIndex()));
-}
+void MainWindow::barPrint()                 { ui->barOut->setText(QString::number(metronome->getBarIndex())); }
 
-void MainWindow::beatPrint()
-{
-    ui->beatOut->setText(QString::number(metronome->getBeatIndex()));
-}
+void MainWindow::beatPrint()                { ui->beatOut->setText(QString::number(metronome->getBeatIndex())); }
+
+
 
 
 void MainWindow::startClicked()
@@ -51,27 +44,6 @@ void MainWindow::startClicked()
     }
 }
 
-void MainWindow::volumeChange(int vol)
- {
-     metronome->setVolume(vol);
- }
-
-void MainWindow::bpmChange(int bpm)
-{
-    metronome->setBpm(bpm);
-}
-
-
-void MainWindow::addBpmChange(int add_bpm)
-{
-    metronome->setAddBpm(add_bpm);
-}
-
-
-void MainWindow::barLimitChange(int bar_lim)
-{
-    metronome->setBarLimit(bar_lim);
-}
 
 void MainWindow::enableSpeedTraining()
 {
@@ -92,3 +64,5 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+

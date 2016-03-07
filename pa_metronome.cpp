@@ -11,7 +11,14 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
 {
     pa_init();
     open(Pa_GetDefaultOutputDevice());
-    std::vector<Beat> bar = { { b1 },{ b2 },{ b3 },{ b4 },{ b5 },{ b6 },{ b7 },{ b8 } };
+    std::vector<Beat> bar = { { b1 },  { b2 },  { b3 },  { b4 },
+                              { b5 },  { b6 },  { b7 },  { b8 },
+                              { b9 },  { b10 }, { b11 }, { b12 },
+                              { b13 }, { b14 }, { b15 }, { b16 },
+                              { b17 }, { b18 }, { b19 }, { b20 },
+                              { b21 }, { b22 }, { b23 }, { b24 },
+                              { b25 }, { b26 }, { b27 }, { b28 },
+                              { b29 }, { b30 }, { b31 }, { b32 } };
     setBar(bar);
 }
 
@@ -125,7 +132,6 @@ int Metronome::paCallback(const void * inputBuffer,
         const float pi = 3.14159265358;
         float *out = (float*)outputBuffer;
         float framesInMs = SAMPLE_RATE / 1000.0;			//количество кадров в одной мс. = 44.1
-        float msCount = metronome->counter / framesInMs;	//счетчик мс
         double tick = framesInMs * 100;                     //длительность одного удара в кадрах
         double delayMs = (1000 * 60) / metronome->bpm;      //интервал в мс
         double interval = (framesInMs * delayMs);           //интервал между ударами в кадрах.

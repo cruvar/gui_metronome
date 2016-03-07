@@ -29,10 +29,10 @@ public:
     void speedTr();
     void HandleError(PaError &err);
 
-    int getBpm()                        { return bpm; }
-    int getBarLimit() { return barLimit; }
-    int getBarIndex() {  return barIndex; }
-    int getBeatIndex() { return beatIndex; }
+    int getBpm()        { return bpm; }
+    int getBarLimit()   { return barLimit; }
+    int getBarIndex()   { return barIndex; }
+    int getBeatIndex()  { return beatIndex; }
 
     bool open(PaDeviceIndex);
     bool pa_init();
@@ -66,14 +66,41 @@ private:
 
 
 
-    int b1 = 1000;
-    int b2 = 500;
-    int b3 = 500;
-    int b4 = 500;
-    int b5 = 500;
-    int b6 = 500;
-    int b7 = 500;
-    int b8 = 500;
+    int b1  = 1000;
+    int b2  = 500;
+    int b3  = 500;
+    int b4  = 500;
+    int b5  = 500;
+    int b6  = 500;
+    int b7  = 500;
+    int b8  = 500;
+    int b9  = 500;
+    int b10 = 500;
+    int b11 = 500;
+    int b12 = 500;
+    int b13 = 500;
+    int b14 = 500;
+    int b15 = 500;
+    int b16 = 500;
+    int b17 = 500;
+    int b18 = 500;
+    int b19 = 500;
+    int b20 = 500;
+    int b21 = 500;
+    int b22 = 500;
+    int b23 = 500;
+    int b24 = 500;
+    int b25 = 500;
+    int b26 = 500;
+    int b27 = 500;
+    int b28 = 500;
+    int b29 = 500;
+    int b30 = 500;
+    int b31 = 500;
+    int b32 = 500;
+
+
+
 
 signals:
     void barPlayed(int);

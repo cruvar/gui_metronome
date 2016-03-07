@@ -25,13 +25,13 @@ private slots:
     void bpmPrint();
     void barPrint();
     void beatPrint();
-    void startClicked();
-    void bpmChange(int);
-    void addBpmChange(int);
-    void barLimitChange(int);
-    void enableSpeedTraining();
-    void volumeChange(int);
+    void bpmChange(int bpm)         { metronome->setBpm(bpm); }
+    void addBpmChange(int add_bpm)  { metronome->setAddBpm(add_bpm); }
+    void barLimitChange(int bar_lim){ metronome->setBarLimit(bar_lim); }
+    void volumeChange(int vol)      { metronome->setVolume(vol);}
 
+    void startClicked();
+    void enableSpeedTraining();
 
 signals:
     void resetBpm(int);
