@@ -11,7 +11,12 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(this,           SIGNAL(resetBpm(int)), ui->bpmSB, SLOT(setValue(int)));
     connect(ui->Volume,     SIGNAL(valueChanged(int)),  this, SLOT(volumeChange(int)));
     connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
+    connect(ui->BarSizeSB,  SIGNAL(valueChanged(int)),  this, SLOT(barSizeChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
+    connect(ui->fourRB,     SIGNAL(toggled(bool)),      this, SLOT(barDuration4()));
+    connect(ui->eightRB,    SIGNAL(toggled(bool)),      this, SLOT(barDuration8()));
+    connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this, SLOT(barDuration16()));
+    connect(ui->thirtyTwoRB,SIGNAL(toggled(bool)),      this, SLOT(barDuration32()));
     connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this, SLOT(addBpmChange(int)));
     connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this, SLOT(barLimitChange(int)));
     connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(enableSpeedTraining()));
@@ -23,11 +28,11 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
 
 /*===================================================================================================*/
 
-void MainWindow::bpmPrint()                 { ui->bpmOut->setText(QString::number(metronome->getBpm())); }
+void MainWindow::bpmPrint()     { ui->bpmOut->setText(QString::number(metronome->getBpm())); }
 
-void MainWindow::barPrint()                 { ui->barOut->setText(QString::number(metronome->getBarIndex())); }
+void MainWindow::barPrint()     { ui->barOut->setText(QString::number(metronome->getBarIndex())); }
 
-void MainWindow::beatPrint()                { ui->beatOut->setText(QString::number(metronome->getBeatIndex())); }
+void MainWindow::beatPrint()    { ui->beatOut->setText(QString::number(metronome->getBeatIndex())); }
 
 
 
@@ -43,6 +48,40 @@ void MainWindow::startClicked()
 
     }
 }
+
+void MainWindow::barDuration4()
+{
+    if(ui->fourRB->isChecked())
+        metronome->setBpm(metronome->getBpm() * 1);
+    //else
+       // metronome->setBpm(ui->bpmSB->value());
+}
+
+void MainWindow::barDuration8()
+{
+    if(ui->eightRB->isChecked())
+        metronome->setBpm(metronome->getBpm() * 2);
+    //else
+      //  metronome->setBpm(metronome->getBpm() / 2);
+}
+
+void MainWindow::barDuration16()
+{
+    if(ui->sixteenRB->isChecked())
+        metronome->setBpm(metronome->getBpm() * 4);
+    //else
+       // metronome->setBpm(metronome->getBpm() / 4);
+}
+
+void MainWindow::barDuration32()
+{
+    if(ui->thirtyTwoRB->isChecked())
+        metronome->setBpm(metronome->getBpm() * 8);
+    //else
+       // metronome->setBpm(metronome->getBpm() / 8);
+}
+
+
 
 
 void MainWindow::enableSpeedTraining()

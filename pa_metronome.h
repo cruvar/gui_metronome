@@ -17,19 +17,22 @@ public:
         int frequencyTick;
     };
 
-    void setBar(std::vector<Beat> bar) { this->bar = bar; }
-    void setBpm(int bpm)               { this->bpm = bpm; }
-    void setVolume(int volume)         { this->volume = (float)volume / 100; }
-    void setAddBpm(int addBpm)         { this->addBpm = addBpm; }
-    void setBarLimit(int barLimit)     { this->barLimit = barLimit; }
-    void setBarIndex(int barIndex)     { this->barIndex = barIndex; }
-    void setBeatIndex(int beatIndex)   { this->beatIndex = beatIndex; }
-    void setBarSize(int barSize)       { this->barSize = barSize; }
+    void setBar(std::vector<Beat> bar)  { this->bar = bar; }
+    void setBpm(int bpm)                { this->bpm = bpm; }
+    void setBpmMemory(int value)        { this->bpmMemory = value; }
+    void setVolume(int volume)          { this->volume = (float)volume / 100; }
+    void setAddBpm(int addBpm)          { this->addBpm = addBpm; }
+    void setBarLimit(int barLimit)      { this->barLimit = barLimit; }
+    void setBarIndex(int barIndex)      { this->barIndex = barIndex; }
+    void setBeatIndex(int beatIndex)    { this->beatIndex = beatIndex; }
+    void setBarSize(int barSize)        { this->barSize = barSize; }
+
 
     void speedTr();
     void HandleError(PaError &err);
 
     int getBpm()        { return bpm; }
+    int getBpmMemory()    { return bpmMemory; }
     int getBarLimit()   { return barLimit; }
     int getBarIndex()   { return barIndex; }
     int getBeatIndex()  { return beatIndex; }
@@ -63,6 +66,7 @@ private:
     int beatIndex   = 0;
     bool playing    = false;
     int barSize     = 4;
+    int bpmMemory   = 0;
 
 
 

@@ -29,7 +29,12 @@ private slots:
     void addBpmChange(int add_bpm)  { metronome->setAddBpm(add_bpm); }
     void barLimitChange(int bar_lim){ metronome->setBarLimit(bar_lim); }
     void volumeChange(int vol)      { metronome->setVolume(vol);}
+    void barSizeChange(int value)   { metronome->setBarSize(value); }
 
+    void barDuration4();
+    void barDuration8();
+    void barDuration16();
+    void barDuration32();
     void startClicked();
     void enableSpeedTraining();
 
