@@ -179,7 +179,7 @@ int Metronome::paCallback(const void * inputBuffer,
     }
 
 Metronome::~Metronome(void)
-    {
-       close();
-       Pa_Terminate();
-    }
+{
+    close();
+    Pa_Terminate();
+}

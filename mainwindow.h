@@ -31,10 +31,8 @@ private slots:
     void volumeChange(int vol)      { metronome->setVolume(vol);}
     void barSizeChange(int value)   { metronome->setBarSize(value); }
 
-    void barDuration4();
-    void barDuration8();
-    void barDuration16();
-    void barDuration32();
+    void barDuration();
+
     void startClicked();
     void enableSpeedTraining();
 

@@ -19,7 +19,7 @@ public:
 
     void setBar(std::vector<Beat> bar)  { this->bar = bar; }
     void setBpm(int bpm)                { this->bpm = bpm; }
-    void setBpmMemory(int value)        { this->bpmMemory = value; }
+    void setBpmTemp(int value)          { this->bpmTemp = value; }
     void setVolume(int volume)          { this->volume = (float)volume / 100; }
     void setAddBpm(int addBpm)          { this->addBpm = addBpm; }
     void setBarLimit(int barLimit)      { this->barLimit = barLimit; }
@@ -32,7 +32,7 @@ public:
     void HandleError(PaError &err);
 
     int getBpm()        { return bpm; }
-    int getBpmMemory()    { return bpmMemory; }
+    int getBpmTemp()    { return bpmTemp; }
     int getBarLimit()   { return barLimit; }
     int getBarIndex()   { return barIndex; }
     int getBeatIndex()  { return beatIndex; }
@@ -66,7 +66,7 @@ private:
     int beatIndex   = 0;
     bool playing    = false;
     int barSize     = 4;
-    int bpmMemory   = 0;
+    int bpmTemp     = 0;
 
 
 

@@ -27,3 +27,5 @@ INCLUDEPATH += $$PWD/portaudio-bin
 DEPENDPATH += $$PWD/portaudio-bin
 
 CONFIG += c++11
+
+DISTFILES +=
