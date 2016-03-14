@@ -2,13 +2,20 @@
 #include <portaudio.h>
 #include "pa_metronome.h"
 #include "ui_mainwindow.h"
+#include <QShortcut>
 
 
 
 MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metronome), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->playButton->setShortcut( QKeySequence(Qt::Key_Space) );
+    //ui->playButton->setShortcut( QKeySequence(Qt::Key_Space) );
+
+    QKeySequence ks(Qt::Key_Space);
+
+    QShortcut* shortcut = new QShortcut(ks, this);
+
+    connect(shortcut, SIGNAL(activated()), this, SLOT(startClicked()));
 
     connect(ui->playButton, SIGNAL(clicked(bool)),      this, SLOT(startClicked()));
     connect(this,           SIGNAL(resetBpm(int)), ui->bpmSB, SLOT(setValue(int)));
@@ -26,7 +33,6 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(metronome,      SIGNAL(bpmChanged(int)),    this, SLOT(bpmPrint()));
     connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(barPrint()));
     connect(metronome,      SIGNAL(beatChanged(int)),   this, SLOT(beatPrint()));
-
 }
 
 
@@ -51,7 +57,6 @@ void MainWindow::startClicked()
     else
     {
         ui->playButton->setText("Start");
-        ui->playButton->setShortcut( QKeySequence(Qt::Key_Space) );
         emit resetBpm(metronome->getOriginalBpm());
         metronome->stop();
 
