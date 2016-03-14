@@ -26,13 +26,11 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
 
 void Metronome::speedTr()
 {
-
-        if(barIndex > barLimit)
-        {
-            barIndex = 1;
-            bpm = bpm +addBpm;
-        }
-
+     if(barIndex > barLimit)
+     {
+         barIndex = 1;
+         bpm = bpm +addBpm;
+     }
 }
 
 /*===============================================================================*/
@@ -57,7 +55,7 @@ bool Metronome::open(PaDeviceIndex index)
         NULL,              /* No input. */
         &outputParameters, /* As above. */
         SAMPLE_RATE,
-        256,               /* Frames per buffer. */
+        32,               /* Frames per buffer. */
         paClipOff,         /* No out of range samples expected. */
         paCallback,
         this);
@@ -90,22 +88,17 @@ bool Metronome::close()
 {
     if (stream == 0)
         return false;
-
     PaError err = Pa_CloseStream(stream);
     stream = 0;
-
     return (err == paNoError);
 }
 
 bool Metronome::stop()
 {
-
     if (stream == 0)
         return false;
-
     playing = false;
     PaError err = Pa_StopStream(stream);
-
     return (err == paNoError);
 }
 

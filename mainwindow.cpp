@@ -2,11 +2,13 @@
 #include <portaudio.h>
 #include "pa_metronome.h"
 #include "ui_mainwindow.h"
-#include <QFile>
+
+
 
 MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metronome), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->playButton->setShortcut( QKeySequence(Qt::Key_Space) );
 
     connect(ui->playButton, SIGNAL(clicked(bool)),      this, SLOT(startClicked()));
     connect(this,           SIGNAL(resetBpm(int)), ui->bpmSB, SLOT(setValue(int)));
@@ -14,10 +16,10 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
     connect(ui->BarSizeSB,  SIGNAL(valueChanged(int)),  this, SLOT(barSizeChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
-    connect(ui->fourRB,     SIGNAL(toggled(bool)),      this, SLOT(barDuration()));
-    connect(ui->eightRB,    SIGNAL(toggled(bool)),      this, SLOT(barDuration()));
-    connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this, SLOT(barDuration()));
-    connect(ui->thirtyTwoRB,SIGNAL(toggled(bool)),      this, SLOT(barDuration()));
+    connect(ui->fourRB,     SIGNAL(toggled(bool)),      this, SLOT(barDuration4()));
+    connect(ui->eightRB,    SIGNAL(toggled(bool)),      this, SLOT(barDuration8()));
+    connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this, SLOT(barDuration16()));
+    connect(ui->thirtyTwoRB,SIGNAL(toggled(bool)),      this, SLOT(barDuration32()));
     connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this, SLOT(addBpmChange(int)));
     connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this, SLOT(barLimitChange(int)));
     connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(enableSpeedTraining()));
@@ -25,13 +27,7 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(barPrint()));
     connect(metronome,      SIGNAL(beatChanged(int)),   this, SLOT(beatPrint()));
 
-
-
-
 }
-
-
-
 
 
 /*===================================================================================================*/
@@ -43,37 +39,44 @@ void MainWindow::barPrint()     { ui->barOut->setText(QString::number(metronome-
 void MainWindow::beatPrint()    { ui->beatOut->setText(QString::number(metronome->getBeatIndex())); }
 
 
-
-
 void MainWindow::startClicked()
 {
     if(!metronome->isPlaying())
+    {
+        ui->playButton->setText("Stop");
+        metronome->setOriginalBpm(ui->bpmSB->value());
+        metronome->setBpm(metronome->getOriginalBpm());
         metronome->start();
+    }
     else
     {
-        emit resetBpm(metronome->getBpm());
+        ui->playButton->setText("Start");
+        ui->playButton->setShortcut( QKeySequence(Qt::Key_Space) );
+        emit resetBpm(metronome->getOriginalBpm());
         metronome->stop();
 
     }
 }
 
-void MainWindow::barDuration()
+void MainWindow::barDuration4()
 {
-    if (ui->fourRB->isChecked())
-        metronome->setBpm(metronome->getBpm() * 1);
-    else
-        if (ui->eightRB->isChecked())
-            metronome->setBpm(metronome->getBpm() * 2);
-        else
-            if (ui->sixteenRB->isChecked())
-                metronome->setBpm(metronome->getBpm() * 4);
-            else
-                if (ui->thirtyTwoRB->isChecked())
-                    metronome->setBpm(metronome->getBpm() * 8);
-
+    metronome->setBpm(metronome->getOriginalBpm() * 1);
 }
 
+void MainWindow::barDuration8()
+{
+    metronome->setBpm(metronome->getOriginalBpm() * 2);
+}
 
+void MainWindow::barDuration16()
+{
+    metronome->setBpm(metronome->getOriginalBpm() * 4);
+}
+
+void MainWindow::barDuration32()
+{
+    metronome->setBpm(metronome->getOriginalBpm() * 8);
+}
 
 
 
