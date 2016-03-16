@@ -9,30 +9,29 @@
 MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metronome), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->playButton->setShortcut( QKeySequence(Qt::Key_Space) );
 
     QKeySequence ks(Qt::Key_Space);
-
     QShortcut* shortcut = new QShortcut(ks, this);
 
-    connect(shortcut, SIGNAL(activated()), this, SLOT(startClicked()));
+    connect(shortcut,       SIGNAL(activated()),        this,       SLOT(startClicked()));
+    connect(ui->playButton, SIGNAL(clicked(bool)),      this,       SLOT(startClicked()));
+    connect(this,           SIGNAL(stopPlaying(int)),   ui->bpmSB,  SLOT(setValue(int)));
+    connect(ui->Volume,     SIGNAL(valueChanged(int)),  this,       SLOT(volumeChange(int)));
+    connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this,       SLOT(bpmChange(int)));
+    connect(ui->BarSizeSB,  SIGNAL(valueChanged(int)),  this,       SLOT(barSizeChange(int)));
+    connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this,       SLOT(enableSpeedTraining()));
 
-    connect(ui->playButton, SIGNAL(clicked(bool)),      this, SLOT(startClicked()));
-    connect(this,           SIGNAL(resetBpm(int)), ui->bpmSB, SLOT(setValue(int)));
-    connect(ui->Volume,     SIGNAL(valueChanged(int)),  this, SLOT(volumeChange(int)));
-    connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this, SLOT(bpmChange(int)));
-    connect(ui->BarSizeSB,  SIGNAL(valueChanged(int)),  this, SLOT(barSizeChange(int)));
-    connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this, SLOT(enableSpeedTraining()));
-    connect(ui->fourRB,     SIGNAL(toggled(bool)),      this, SLOT(barDuration4()));
-    connect(ui->eightRB,    SIGNAL(toggled(bool)),      this, SLOT(barDuration8()));
-    connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this, SLOT(barDuration16()));
-    connect(ui->thirtyTwoRB,SIGNAL(toggled(bool)),      this, SLOT(barDuration32()));
-    connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this, SLOT(addBpmChange(int)));
-    connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this, SLOT(barLimitChange(int)));
-    connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(enableSpeedTraining()));
-    connect(metronome,      SIGNAL(bpmChanged(int)),    this, SLOT(bpmPrint()));
-    connect(metronome,      SIGNAL(barPlayed(int)),     this, SLOT(barPrint()));
-    connect(metronome,      SIGNAL(beatChanged(int)),   this, SLOT(beatPrint()));
+    connect(ui->fourRB,     SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
+    connect(ui->eightRB,    SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
+    connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
+
+
+    connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this,       SLOT(addBpmChange(int)));
+    connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this,       SLOT(barLimitChange(int)));
+    connect(metronome,      SIGNAL(barPlayed(int)),     this,       SLOT(enableSpeedTraining()));
+    connect(metronome,      SIGNAL(bpmChanged(int)),    this,       SLOT(bpmPrint()));
+    connect(metronome,      SIGNAL(barPlayed(int)),     this,       SLOT(barPrint()));
+    connect(metronome,      SIGNAL(beatChanged(int)),   this,       SLOT(beatPrint()));
 }
 
 
@@ -57,30 +56,23 @@ void MainWindow::startClicked()
     else
     {
         ui->playButton->setText("Start");
-        emit resetBpm(metronome->getOriginalBpm());
+        emit stopPlaying(metronome->getBpm());
         metronome->stop();
 
     }
 }
 
-void MainWindow::barDuration4()
+void MainWindow::barDuration()
 {
-    metronome->setBpm(metronome->getOriginalBpm() * 1);
-}
+    if ( ui->fourRB->isChecked())
+        metronome->setDuration(1);
+    else
+    if( ui->eightRB->isChecked())
+        metronome->setDuration(2);
+    else
+    if( ui->sixteenRB->isChecked())
+        metronome->setDuration(4);
 
-void MainWindow::barDuration8()
-{
-    metronome->setBpm(metronome->getOriginalBpm() * 2);
-}
-
-void MainWindow::barDuration16()
-{
-    metronome->setBpm(metronome->getOriginalBpm() * 4);
-}
-
-void MainWindow::barDuration32()
-{
-    metronome->setBpm(metronome->getOriginalBpm() * 8);
 }
 
 

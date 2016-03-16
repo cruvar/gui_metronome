@@ -11,14 +11,14 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
 {
     pa_init();
     open(Pa_GetDefaultOutputDevice());
-    std::vector<Beat> bar = { { b1 },  { b2 },  { b3 },  { b4 },
-                              { b5 },  { b6 },  { b7 },  { b8 },
-                              { b9 },  { b10 }, { b11 }, { b12 },
-                              { b13 }, { b14 }, { b15 }, { b16 },
-                              { b17 }, { b18 }, { b19 }, { b20 },
-                              { b21 }, { b22 }, { b23 }, { b24 },
-                              { b25 }, { b26 }, { b27 }, { b28 },
-                              { b29 }, { b30 }, { b31 }, { b32 } };
+    std::vector<Beat> bar = { { b1, d1 },   { b2, d2 },   { b3, d3 },   { b4, d4 },
+                              { b5, d5 },   { b6, d6 },   { b7, d7 },   { b8, d8 },
+                              { b9, d9 },   { b10, d10 }, { b11, d11 }, { b12, d12 },
+                              { b13, d13 }, { b14, d14 }, { b15, d15 }, { b16, d16 },
+                              { b17, d17 }, { b18, d28 }, { b19, d19 }, { b20, d20 },
+                              { b21, d21 }, { b22, d22 }, { b23, d23 }, { b24, d24 },
+                              { b25, d25 }, { b26, d26 }, { b27, d27 }, { b28, d28 },
+                              { b29, d29 }, { b30, d30 }, { b31, d31 }, { b32, d32 } };
     setBar(bar);
 }
 
@@ -55,7 +55,7 @@ bool Metronome::open(PaDeviceIndex index)
         NULL,              /* No input. */
         &outputParameters, /* As above. */
         SAMPLE_RATE,
-        32,               /* Frames per buffer. */
+        256,               /* Frames per buffer. */
         paClipOff,         /* No out of range samples expected. */
         paCallback,
         this);
@@ -126,9 +126,11 @@ int Metronome::paCallback(const void * inputBuffer,
         float *out = (float*)outputBuffer;
         float framesInMs = SAMPLE_RATE / 1000.0;			//количество кадров в одной мс. = 44.1
         double tick = framesInMs * 100;                     //длительность одного удара в кадрах
-        double delayMs = (1000 * 60) / metronome->bpm;      //интервал в мс
+        double delayMs = (( 1000 * 60) / metronome->bpm )
+                          / metronome->bar[metronome->beatIndex].Duration;      //интервал в мс
         double interval = (framesInMs * delayMs);           //интервал между ударами в кадрах.
 
+        double dur = metronome->beatDuration;
 
         for (unsigned int i = 0; i < framesPerBuffer; i++)
         {
