@@ -869,12 +869,12 @@ QPushButton { background-color: #d7801a }
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>761</width>
-      <height>121</height>
+      <width>758</width>
+      <height>113</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
-     <item>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
       <widget class="QGroupBox" name="OutputGBox">
        <property name="minimumSize">
         <size>
@@ -918,7 +918,7 @@ QPushButton { background-color: #d7801a }
             <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
-              <height>20</height>
+              <height>24</height>
              </size>
             </property>
            </spacer>
@@ -1034,7 +1034,7 @@ QPushButton { background-color: #d7801a }
        </layout>
       </widget>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QGroupBox" name="speed_trGB">
        <property name="minimumSize">
         <size>
@@ -1161,7 +1161,7 @@ QPushButton { background-color: #d7801a }
        </layout>
       </widget>
      </item>
-     <item>
+     <item row="0" column="2">
       <widget class="QGroupBox" name="BeatGBox">
        <property name="minimumSize">
         <size>
@@ -1257,13 +1257,6 @@ QPushButton { background-color: #d7801a }
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QRadioButton" name="thirtyTwoRB">
-            <property name="text">
-             <string>/32</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
@@ -1282,7 +1275,7 @@ QPushButton { background-color: #d7801a }
        </layout>
       </widget>
      </item>
-     <item>
+     <item row="0" column="3">
       <widget class="QGroupBox" name="groupBox_3">
        <property name="minimumSize">
         <size>
@@ -1319,7 +1312,7 @@ QPushButton { background-color: #d7801a }
        </layout>
       </widget>
      </item>
-     <item>
+     <item row="0" column="4">
       <widget class="QGroupBox" name="groupBox_2">
        <property name="minimumSize">
         <size>
@@ -1565,7 +1558,7 @@ QPushButton { background-color: #d7801a }
           </property>
          </spacer>
         </item>
-        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+        <item>
          <widget class="QPushButton" name="playButton">
           <property name="minimumSize">
            <size>

@@ -4,8 +4,6 @@
 #include "ui_mainwindow.h"
 #include <QShortcut>
 
-
-
 MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metronome), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -20,12 +18,9 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(ui->bpmSB,      SIGNAL(valueChanged(int)),  this,       SLOT(bpmChange(int)));
     connect(ui->BarSizeSB,  SIGNAL(valueChanged(int)),  this,       SLOT(barSizeChange(int)));
     connect(ui->en_sp_trRB, SIGNAL(toggled(bool)),      this,       SLOT(enableSpeedTraining()));
-
     connect(ui->fourRB,     SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
     connect(ui->eightRB,    SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
     connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
-
-
     connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this,       SLOT(addBpmChange(int)));
     connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this,       SLOT(barLimitChange(int)));
     connect(metronome,      SIGNAL(barPlayed(int)),     this,       SLOT(enableSpeedTraining()));
@@ -42,7 +37,6 @@ void MainWindow::bpmPrint()     { ui->bpmOut->setText(QString::number(metronome-
 void MainWindow::barPrint()     { ui->barOut->setText(QString::number(metronome->getBarIndex())); }
 
 void MainWindow::beatPrint()    { ui->beatOut->setText(QString::number(metronome->getBeatIndex())); }
-
 
 void MainWindow::startClicked()
 {
@@ -74,8 +68,6 @@ void MainWindow::barDuration()
         metronome->setDuration(4);
 
 }
-
-
 
 void MainWindow::enableSpeedTraining()
 {
