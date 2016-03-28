@@ -23,6 +23,7 @@ MainWindow :: MainWindow(Metronome *metronome, QWidget *parent) : metronome(metr
     connect(ui->sixteenRB,  SIGNAL(toggled(bool)),      this,       SLOT(barDuration()));
     connect(ui->add_bpmSB,  SIGNAL(valueChanged(int)),  this,       SLOT(addBpmChange(int)));
     connect(ui->barsLimitSB,SIGNAL(valueChanged(int)),  this,       SLOT(barLimitChange(int)));
+    connect(ui->firstBeatCB,SIGNAL(toggled(bool)),      this,       SLOT(setForceBeat()));
     connect(metronome,      SIGNAL(barPlayed(int)),     this,       SLOT(enableSpeedTraining()));
     connect(metronome,      SIGNAL(bpmChanged(int)),    this,       SLOT(bpmPrint()));
     connect(metronome,      SIGNAL(barPlayed(int)),     this,       SLOT(barPrint()));
@@ -42,14 +43,14 @@ void MainWindow::startClicked()
 {
     if(!metronome->isPlaying())
     {
-        ui->playButton->setText("Stop");
+        ui->playButton->setText("Стоп");
         metronome->setOriginalBpm(ui->bpmSB->value());
         metronome->setBpm(metronome->getOriginalBpm());
         metronome->start();
     }
     else
     {
-        ui->playButton->setText("Start");
+        ui->playButton->setText("Старт");
         emit stopPlaying(metronome->getBpm());
         metronome->stop();
 
@@ -79,6 +80,14 @@ void MainWindow::enableSpeedTraining()
     {
         metronome->setBpm(ui->bpmSB->value());
     }
+}
+
+void MainWindow::setForceBeat()
+{
+    if(ui->firstBeatCB->isChecked())
+        metronome->forceBeat();
+    else
+        metronome->normalBeat();
 }
 
 

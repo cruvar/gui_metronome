@@ -32,11 +32,10 @@ private slots:
     void barLimitChange(int bar_lim){ metronome->setBarLimit(bar_lim); }
     void volumeChange(int vol)      { metronome->setVolume(vol);}
     void barSizeChange(int value)   { metronome->setBarSize(value); }
-
     void barDuration();
-
     void startClicked();
-    void enableSpeedTraining();
+    void enableSpeedTraining();    
+    void setForceBeat();
 
 signals:
     void stopPlaying(int);

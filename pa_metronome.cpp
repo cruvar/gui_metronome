@@ -12,7 +12,7 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
     pa_init();
     open(Pa_GetDefaultOutputDevice());
 
-    std::vector<Beat> bar = { { 1046 }, { 523 }, { 523 }, { 523 },
+    std::vector<Beat> bar = { { 523 }, { 523 }, { 523 }, { 523 },
                               { 523 }, { 523 }, { 523 }, { 523 },
                               { 523 }, { 523 }, { 523 }, { 523 },
                               { 523 }, { 523 }, { 523 }, { 523 },
@@ -20,6 +20,7 @@ Metronome::Metronome(QObject *parent) : QObject(parent)
                               { 523 }, { 523 }, { 523 }, { 523 },
                               { 523 }, { 523 }, { 523 }, { 523 },
                               { 523 }, { 523 }, { 523 }, { 523 } };
+
     setBar(bar);
 }
 

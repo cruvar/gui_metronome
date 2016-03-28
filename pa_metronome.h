@@ -29,6 +29,8 @@ public:
     void setDuration(double value)      { this->duration = value; }
 
     void speedTr();
+    void forceBeat()    { bar[0] = {1046}; }
+    void normalBeat()   { bar[0] = {523}; };
     void HandleError(PaError &err);
 
     int getBpm()        { return bpm; }
@@ -47,6 +49,7 @@ public:
 
     ~Metronome(void);
 
+
 private:
     static int paCallback(const void*   inputBuffer,
         void*                           outputBuffer,
@@ -56,6 +59,8 @@ private:
         void*                           userData);
 
     std::vector<Beat> bar;
+
+
     PaStream *stream;
 
     int addBpm      = 0;
@@ -69,7 +74,6 @@ private:
     bool playing    = false;
     int barSize     = 4;
     double duration = 1;
-
 
 signals:
     void barPlayed(int);
